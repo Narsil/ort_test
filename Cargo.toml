@@ -1,0 +1,16 @@
+[package]
+name = "ort_test"
+version = "0.1.0"
+authors = ["Nicolas Patry <patry.nicolas@protonmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+onnxruntime = { path ="./onnxruntime-rs/onnxruntime" }
+onnxruntime-sys = "*"
+actix-web = "*"
+env_logger = "*"
+tokenizers = { path = "./tokenizers/tokenizers"}
+serde = "*"
+

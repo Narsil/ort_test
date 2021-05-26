@@ -1,0 +1,94 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Unit tests (onnxruntime-sys)",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=onnxruntime-sys"
+                ],
+                "filter": {
+                    "name": "onnxruntime-sys",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "DYLD_LIBRARY_PATH": "target/onnxruntime/lib"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Example: c_api_sample (onnxruntime-sys)",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=c_api_sample",
+                    "--package=onnxruntime-sys"
+                ],
+                "filter": {
+                    "name": "c_api_sample",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "DYLD_LIBRARY_PATH": "target/onnxruntime/lib"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Example: sample (onnxruntime)",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=sample",
+                    "--package=onnxruntime"
+                ],
+                "filter": {
+                    "name": "sample",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "DYLD_LIBRARY_PATH": "target/onnxruntime/lib"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Unit tests, Example: c_api_sample",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--example=c_api_sample",
+                    "--package=onnxruntime-sys"
+                ],
+                "filter": {
+                    "name": "c_api_sample",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "DYLD_LIBRARY_PATH": "target/onnxruntime/lib"
+            }
+        }
+    ]
+}

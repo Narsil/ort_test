@@ -1,0 +1,9 @@
+**/target
+**/*.venv
+**/*.onnx
+**/*.dSYM
+onnxruntime.git
+Cargo.lock
+**/synset.txt
+
+/.idea

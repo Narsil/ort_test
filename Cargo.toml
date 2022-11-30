@@ -11,6 +11,6 @@ onnxruntime = { path ="./onnxruntime-rs/onnxruntime" }
 onnxruntime-sys = "*"
 actix-web = "*"
 env_logger = "*"
-tokenizers = { path = "./tokenizers/tokenizers"}
+tokenizers = "*"
 serde = "*"
 

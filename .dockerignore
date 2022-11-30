@@ -1,0 +1,4 @@
+libonnxruntime.so.1.6.0
+gpt2.onnx
+target/
+.git/

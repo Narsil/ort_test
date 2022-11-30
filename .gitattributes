@@ -1,0 +1,2 @@
+libonnxruntime.so.1.6.0 filter=lfs diff=lfs merge=lfs -text
+gpt2.onnx filter=lfs diff=lfs merge=lfs -text

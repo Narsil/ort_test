@@ -74,10 +74,7 @@ where
     'm: 't,
     's: 'm,
 {
-    // println!("input ids {:?}", input_ids);
-    // println!("attention mask {:?}", attention_mask);
     session.feed(input_ids).unwrap();
-    // println!("{:?}", past_key_values[0]);
     past_key_values.into_iter().for_each(|past_key_value| {
         session.feed(past_key_value.to_owned()).unwrap();
     });
@@ -85,7 +82,6 @@ where
     session.inner_run().unwrap();
     let new_id = {
         let logits: ArrayBase<OwnedRepr<f32>, IxDyn> = session.read().unwrap().to_owned();
-        // println!("Logits {:?}", logits);
         let new_id = argmax(&logits, 0) as i64;
         new_id
     };
@@ -93,7 +89,6 @@ where
     let out_past_key_values = (0..24)
         .map(|_| session.read().unwrap().to_owned())
         .collect();
-    // println!("Time elapsed in inner() is: {:?}", start.elapsed());
 
     (new_id, out_past_key_values)
 }
@@ -139,14 +134,12 @@ fn generate(
             Array::from_shape_vec((1, attention_mask.len()), attention_mask.clone()).unwrap(),
             &past_key_values,
         );
-        // println!("Loop1 {:?}", start.elapsed());
         let start = Instant::now();
 
         output_ids.push(new_id);
         input_ids = array![[new_id]];
         attention_mask.push(1);
         past_key_values = out_past_key_values;
-        println!("Loop {:?}", start.elapsed());
     }
     Array::from_shape_vec((1, output_ids.len()), output_ids).unwrap()
 }
@@ -156,7 +149,6 @@ async fn main() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_web=info");
     env_logger::init();
     HttpServer::new(|| {
-        println!("New here");
         let environment = Environment::builder()
             .with_name("app")
             .with_log_level(LoggingLevel::Verbose)
@@ -178,7 +170,6 @@ async fn main() -> std::io::Result<()> {
             session: Mutex::new(session),
             tokenizer: Mutex::new(tokenizer),
         });
-        println!("Created state");
         App::new()
             .wrap(Logger::default())
             .app_data(state)

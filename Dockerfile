@@ -1,4 +1,4 @@
-FROM rust:1.50 as build
+FROM rust:1.65 as build
 
 WORKDIR /usr/src/ort_test
 COPY . .
